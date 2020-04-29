@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03. 数组中重复的数字</title>
+</head>
+<body>
+找出数组中重复的数字。<br>
+在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。<br>
+数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。<br>
+请找出数组中任意一个重复的数字。<br>
+输入： [2, 3, 1, 0, 2, 5, 3] <br>
+输出：2 或 3 <br>
+2 <= n <= 100000 <br>
+链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof">
+    https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof </a><br>
+<br>
+<script>
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    var findRepeatNumber = function(nums) {
+        // let rec = new Map();
+        let rec = {};
+        // x in nums 这个是下标，of 才是值
+        // 集合是 has 字典才可以取它的值用来if判断
+        for (const x of nums) {
+            if (rec[x]) {
+                return x
+            } else {
+                rec[x] = true
+            }
+        }
+    };
+
+    let main = function() {
+        // const nums = [2, 3, 1, 0, 2, 5, 3];
+        const nums = [0, 1, 0];
+        let ret = findRepeatNumber(nums);
+        document.write(ret.toString())
+    };
+
+    main();
+</script>
+</body>
+</html>
