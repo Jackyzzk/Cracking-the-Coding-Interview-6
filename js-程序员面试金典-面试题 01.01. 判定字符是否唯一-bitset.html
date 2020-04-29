@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题 01.01. 判定字符是否唯一</title>
+</head>
+<body>
+实现一个算法，确定一个字符串 s 的所有字符是否全都不同。<br>
+输入: s = "leetcode" <br>
+输出: false <br>
+输入: s = "abc" <br>
+输出: true <br>
+0 <= len(s) <= 100 <br>
+如果你不使用额外的数据结构，会很加分。<br>
+链接：<a href="https://leetcode-cn.com/problems/is-unique-lcci">
+    https://leetcode-cn.com/problems/is-unique-lcci </a><br>
+<br>
+<script>
+    /**
+     * @param {string} astr
+     * @return {boolean}
+     */
+    var isUnique = function(astr) {
+        let rec = 0;
+        for (const x of astr) {
+            if ((rec >> (x.charCodeAt() - 97)) & 1) {
+                return false;
+            } else {
+                rec |= 1 << (x.charCodeAt() - 97);
+            }
+        }
+        return true;
+    };
+
+    let main = function () {
+        let s = "leetcode";
+        s = "abc";
+        let ret = isUnique(s);
+        document.write('输入：'+ s + '</br>');
+        document.write('输出：' + ret.toString());
+    };
+
+    main()
+</script>
+</body>
+</html>

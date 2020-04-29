@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题 01.02. 判定是否互为字符重排</title>
+</head>
+<body>
+给定两个字符串 s1 和 s2，请编写一个程序，<br>
+确定其中一个字符串的字符重新排列后，能否变成另一个字符串。<br>
+输入: s1 = "abc", s2 = "bca" <br>
+输出: true <br>
+输入: s1 = "abc", s2 = "bad" <br>
+输出: false <br>
+0 <= len(s1) <= 100 <br>
+0 <= len(s2) <= 100 <br>
+链接：<a href="https://leetcode-cn.com/problems/check-permutation-lcci">
+    https://leetcode-cn.com/problems/check-permutation-lcci
+</a><br>
+<br>
+<script>
+    /**
+     * @param {string} s1
+     * @param {string} s2
+     * @return {boolean}
+     */
+    var CheckPermutation = function(s1, s2) {
+        let rec = {};
+        for (const x of s1) {
+            if (rec[x]) {
+                rec[x] += 1;
+            } else {
+                rec[x] = 1;
+            }
+        }
+        for (const x of s2) {
+            if (rec[x]) {
+                rec[x] -= 1;
+            } else {
+                return false;
+            }
+        }
+        // 只要部署了Iterator的数据结构都可以使用 for ··· of ··· 完成遍历操作，而字典不是Iterator
+        // for...in 语句以任意顺序遍历一个对象的可枚举属性。
+        for (const x in rec) {
+            if (rec[x] !== 0) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+
+    let main = function () {
+        let s1 = 'abc', s2 = 'bca';
+        // s2 = 'bad';
+        // s1 = "jzvthzihsvghjhbrpfhdwixmyaxjrdzfvnhpmyrbqjpdffykqgahgzpjwvouurr";
+        // s2 = "hhqhxjyrghjjsmduaxppwrqkikqnfdrzjowapehtbyrgrfyprrfrebzduxvvhhu";  // false
+        let ret = CheckPermutation(s1, s2);
+        document.write('输入：'+ s1 + ', ' + s2 + '</br>');
+        document.write('输出：' + ret.toString());
+    };
+
+    main();
+</script>
+</body>
+</html>
