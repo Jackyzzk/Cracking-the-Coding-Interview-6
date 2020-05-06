@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题 01.03. URL化</title>
+</head>
+<body>
+URL化。编写一种方法，将字符串中的空格全部替换为%20。<br>
+假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。<br>
+（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）<br>
+输入："Mr John Smith    ", 13 <br>
+输出："Mr%20John%20Smith" <br>
+输入："               ", 5 <br>
+输出："%20%20%20%20%20" <br>
+字符串长度在[0, 500000]范围内。 <br>
+链接：<a href="https://leetcode-cn.com/problems/string-to-url-lcci">
+    https://leetcode-cn.com/problems/string-to-url-lcci </a><br>
+<br>
+<script>
+    /**
+     * @param {string} S
+     * @param {number} length
+     * @return {string}
+     */
+    var replaceSpaces = function(S, length) {
+        // substr() 方法可在字符串中抽取从 start 下标开始的指定数目的字符。
+        // start必需。要抽取的子串的起始下标。必须是数值。如果是负数，那么该参数声明从字符串的尾部开始算起的位置。
+        // length可选。子串中的字符数。必须是数值。如果省略了该参数，那么返回从 stringObject 的开始位置到结尾的字串。
+        // 返回值是一个新的字符串，包含从 stringObject 的 start（包括 start 所指的字符） 处开始的 length 个字符。
+        // 语法：stringObject.substr(start,length)
+        // replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+        // 返回值是一个新的字符串，是用 replacement 替换了 regexp 的第一次匹配或所有匹配之后得到的。
+        // 字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。
+        // 它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 replacement 来替换这些子串。
+        // 如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。
+        // 语法：stringObject.replace(regexp/substr,replacement)
+        // \s 匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。
+        // let s = S.substr(0, length);
+        // return s.replace(/\s/g, '%20');
+        return S.substr(0, length).replace(/\s/g, '%20');
+    };
+
+    let main = function () {
+        let s = "Mr John Smith    ", l = 13;
+        s = "               ";
+        l = 5;
+        s = "      dsfasdfasdfas               ";
+        l = 19;  // "%20%20%20%20%20%20dsfasdfasdfas"
+        let ret = replaceSpaces(s, l);
+        document.write('输入：'+ s + ', ' + l + '</br>');
+        document.write('输出：' + ret.toString());
+    };
+
+    main();
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题 02.01. 移除重复节点</title>
+</head>
+<body>
+编写代码，移除未排序链表中的重复节点。保留最开始出现的节点。<br>
+输入：[1, 2, 3, 3, 2, 1] <br>
+输出：[1, 2, 3] <br>
+输入：[1, 1, 1, 1, 2] <br>
+输出：[1, 2] <br>
+链表长度在[0, 20000]范围内。<br>
+链表元素在[0, 20000]范围内。<br>
+如果不得使用临时缓冲区，该怎么解决？<br>
+链接：<a href="https://leetcode-cn.com/problems/remove-duplicate-node-lcci">
+    https://leetcode-cn.com/problems/remove-duplicate-node-lcci</a><br>
+<br>
+<script>
+     function ListNode(val) {
+         this.val = val;
+         this.next = null;
+     }
+    /**
+     * @param {ListNode} head
+     * @return {ListNode}
+     */
+    var removeDuplicateNodes = function(head) {
+        let rec = new Set();
+        let aux = new ListNode(0);
+        let pre = aux;
+        while (head) {
+            if (!rec.has(head.val)) {
+                rec.add(head.val);
+                pre.next = head;
+                pre = head;
+            }
+            head = head.next;
+        }
+        pre.next = head;
+        return aux.next;
+    };
+
+    let create = function (nums) {
+        let aux = new ListNode(0);
+        let p = aux;
+        for (const x of nums) {
+            p.next = new ListNode(x);
+            p = p.next;
+        }
+        return aux.next;
+     };
+
+    let traversal = function (head) {
+        let ret = [];
+        while (head) {
+            ret.push(head.val);
+            head = head.next;
+        }
+        return ret;
+    };
+
+    let main = function () {
+        let nums = [1, 2, 3, 3, 2, 1];
+        let ret = removeDuplicateNodes(create(nums));
+        ret = traversal(ret);
+        document.write('输入：'+ nums + '</br>');
+        document.write('输出：' + ret.toString());
+    };
+
+    main();
+</script>
+</body>
+</html>
