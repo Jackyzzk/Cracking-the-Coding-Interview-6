@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题 02.06. 回文链表</title>
+</head>
+<body>
+编写一个函数，检查输入的链表是否是回文的。<br>
+输入： 1->2 <br>
+输出： false <br>
+输入： 1->2->2->1 <br>
+输出： true <br>
+你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？ <br>
+链接：<a href="https://leetcode-cn.com/problems/palindrome-linked-list-lcci">
+    https://leetcode-cn.com/problems/palindrome-linked-list-lcci</a><br>
+<br>
+<script>
+    function ListNode(val) {
+        this.val = val;
+        this.next = null;
+    }
+    /**
+     * @param {ListNode} head
+     * @return {boolean}
+     */
+    var isPalindrome = function(head) {
+        let reverse = function (node) {
+            let pre = null, next = null;
+            while (node) {
+                next = node.next;
+                node.next = pre;
+                pre = node;
+                node = next;
+            }
+            return pre;
+        };
+
+        let count = 0, p = head;
+        while (p) {
+            p = p.next;
+            count++;
+        }
+        p = head;
+        for (let i = 0; i < (count + 1) >> 1; i++) {
+            p = p.next;
+        }
+        p = reverse(p);
+        while (p) {
+            if (head.val !== p.val) {
+                return false;
+            }
+            p = p.next;
+            head = head.next;
+        }
+        return true;
+    };
+
+    let create = function (nums) {
+        let aux = new ListNode(0);
+        let p = aux;
+        for (const x of nums) {
+            p.next = new ListNode(x);
+            p = p.next;
+        }
+        return aux.next;
+     };
+
+    let traversal = function (head) {
+        let ret = [];
+        while (head) {
+            ret.push(head.val);
+            head = head.next;
+        }
+        return ret;
+    };
+
+    let main = function () {
+        let nums = [1, 2];
+        // nums = [1, 2, 2, 1];
+        nums = [];
+        let ret = isPalindrome(create(nums));
+        document.write('输入：'+ nums + '</br>');
+        document.write('输出：' + ret.toString());
+    };
+
+    main();
+</script>
+</body>
+</html>

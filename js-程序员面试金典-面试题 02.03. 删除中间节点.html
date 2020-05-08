@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题 02.02. 返回倒数第 k 个节点</title>
+</head>
+<body>
+实现一种算法，删除单向链表中间的某个节点（除了第一个和最后一个节点，不一定是中间节点），假定你只能访问该节点。<br>
+输入：单向链表a->b->c->d->e->f中的节点c <br>
+结果：不返回任何数据，但该链表变为a->b->d->e->f <br>
+链接：<a href="https://leetcode-cn.com/problems/delete-middle-node-lcci">
+    https://leetcode-cn.com/problems/delete-middle-node-lcci</a><br>
+<br>
+<script>
+    function ListNode(val) {
+     this.val = val;
+     this.next = null;
+    }
+    /**
+     * @param {ListNode} node
+     * @return {void} Do not return anything, modify node in-place instead.
+     */
+    var deleteNode = function(node) {
+        if (node && node.next) {
+            node.val = node.next.val;
+            node.next = node.next.next;
+        }
+    };
+
+    let create = function (nums, del) {
+        let aux = new ListNode(0);
+        let p = aux;
+        let rec = aux.next;
+        for (const x of nums) {
+            p.next = new ListNode(x);
+            p = p.next;
+            if (x === del) {
+                rec = p;
+            }
+        }
+        return [aux.next, rec]
+     };
+
+    let traversal = function (head) {
+        let ret = [];
+        while (head) {
+            ret.push(head.val);
+            head = head.next;
+        }
+        return ret;
+    };
+
+    let main = function () {
+        let nums = [4,5,1,9];
+        let del = 5;
+        let ln = create(nums, del);
+        deleteNode(ln[1]);
+        document.write('输入：'+ nums + '</br>');
+        document.write('输出：' + traversal(ln[0]));
+    };
+
+    main();
+</script>
+</body>
+</html>
