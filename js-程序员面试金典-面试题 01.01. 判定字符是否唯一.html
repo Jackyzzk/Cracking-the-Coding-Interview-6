@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <title>面试题 01.01. 判定字符是否唯一</title>
 </head>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/test-jquery.js"></script>
 <body>
-实现一个算法，确定一个字符串 s 的所有字符是否全都不同。<br>
-输入: s = "leetcode" <br>
-输出: false <br>
-输入: s = "abc" <br>
-输出: true <br>
+
+<div class="commands">
+<div id="01">
+    实现一个算法，确定一个字符串 s 的所有字符是否全都不同。<br></div>
+<div class="input" id="02">
+    <des>输入: </des>s = "leetcode" <br></div>
+<div class="output" id="03">
+    输出: false <br></div>
+<div class="input" id="04">
+    输入: s = "abc" <br></div>
+<div class="output" id="05">
+    输出: true <br></div>
 0 <= len(s) <= 100 <br>
 如果你不使用额外的数据结构，会很加分。<br>
 链接：<a href="https://leetcode-cn.com/problems/is-unique-lcci">
     https://leetcode-cn.com/problems/is-unique-lcci </a><br>
 <br>
+</div>
 <script>
     /**
      * @param {string} astr
@@ -37,10 +48,24 @@
         s = "abc";
         let ret = isUnique(s);
         document.write('输入：'+ s + '</br>');
-        document.write('输出：' + ret.toString());
+        document.write('输出：' + ret.toString() + '</br>');
     };
 
     main()
 </script>
+
+<data></data>
+
+<div id="app">
+    <p>{{ msg }}</p>
+    <input type="button" value="test" @click="btn">
+<!--  属性值里面如果想加入数据，要用v-bind，不能用｛｛｝｝  -->
+<!--  v-bind缩写为只有冒号：，v-on缩写为@  -->
+    <a :href="sUrl"> LeetCode的链接 </a>
+    <p v-for="item in aList">{{ item }}</p>
+</div>
+<!--Vue没有ready方法，也没有window.onload，所以代码需要顺序写-->
+<script src="js/test-vue.js"></script>
+
 </body>
 </html>
