@@ -1,2 +1,1 @@
-que = []
-print(que is None)
+print(ord('d'))

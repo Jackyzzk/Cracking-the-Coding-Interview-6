@@ -23,12 +23,22 @@ class Solution(object):
         :type nums: List[int]
         :rtype: TreeNode
         """
+        def rebuild(start, end):
+            if start > end:
+                return None
+            mid = (start + end) >> 1
+            root = TreeNode(nums[mid])
+            root.left = rebuild(start, mid - 1)
+            root.right = rebuild(mid + 1, end)
+            return root
+
+        return rebuild(0, len(nums) - 1)
 
 
 def main():
-
+    nums = [-10, -3, 0, 5, 9]
     test = Solution()
-    ret = test.sortedArrayToBST()
+    ret = test.sortedArrayToBST(nums)
     print(ret)
 
 
